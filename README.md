@@ -112,7 +112,7 @@
 
 ## 📸 Screenshots
 
-> *Attach About This Mac + Hackintool screenshots here*
+![About This Mac](Docs/Screenshots/B5CC167C-A4D2-4E5B-8B6B-86A746BA2519.webp)
 
 ---
 
