@@ -1,6 +1,10 @@
 # 🍎 Ryzentosh EFI — ASRock B450M Steel Legend
 ### macOS Tahoe 26.5.1 | OpenCore 1.0.7
 
+![macOS](https://img.shields.io/badge/macOS-Ventura_13-orange?style=flat-square&logo=apple)
+![macOS](https://img.shields.io/badge/macOS-Sonoma_14.0-orange?style=flat-square&logo=apple)
+![macOS](https://img.shields.io/badge/macOS-Sonoma_14.4-orange?style=flat-square&logo=apple)
+![macOS](https://img.shields.io/badge/macOS-Sequoia_15-orange?style=flat-square&logo=apple)
 ![macOS](https://img.shields.io/badge/macOS-Tahoe_26.5.1-orange?style=flat-square&logo=apple)
 ![OpenCore](https://img.shields.io/badge/OpenCore-1.0.7-blue?style=flat-square)
 ![SMBIOS](https://img.shields.io/badge/SMBIOS-MacPro7,1-grey?style=flat-square)
