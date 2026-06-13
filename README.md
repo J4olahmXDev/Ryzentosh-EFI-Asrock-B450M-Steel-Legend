@@ -6,7 +6,7 @@
 ![SMBIOS](https://img.shields.io/badge/SMBIOS-MacPro7,1-grey?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Working-green?style=flat-square)
 
-> อัพมาจาก macOS Sonoma 14.0.2 → Tahoe 26.5.1
+> Upgraded from macOS Sonoma 14.0.2 → Tahoe 26.5.1
 
 ---
 
@@ -27,30 +27,30 @@
 
 ---
 
-## ✅ ใช้งานได้
+## ✅ Working
 
-- **GPU** — Metal 3 acceleration (RX 5500 XT ต้อง patch ผ่าน OCLP-Mod 3.1.9 หลังติดตั้ง)
+- **GPU** — Metal 3 acceleration (RX 5500 XT requires patching via OCLP-Mod 3.1.9 after install)
 - **Audio** — AppleALC layout-id 1 + OCLP audio patch
-- **LAN** — Realtek Gigabit 1000baseT เต็มสปีด
-- **Wi-Fi** — itlwm + HeliPort (ใช้งานได้ปกติ)
-- **Bluetooth** — Intel BT 4.2 ผ่าน USB header (ต้อง USB map ก่อน)
-- **USB** — 15 ports mapped ด้วย USBToolBox + UTBMap
+- **LAN** — Realtek Gigabit 1000baseT at full speed
+- **Wi-Fi** — itlwm + HeliPort (working normally)
+- **Bluetooth** — Intel BT 4.2 via USB header (requires USB mapping first)
+- **USB** — 15 ports mapped with USBToolBox + UTBMap
 - **iCloud / App Store / iMessage / FaceTime**
-- **Sleep / Wake** — ปลุกตื่นครบ ใช้งานได้ปกติ
+- **Sleep / Wake** — works fully, wakes properly
 
 ---
 
-## ❌ ใช้ไม่ได้
+## ❌ Not Working
 
-- **Handoff / Continuity** — ต้องการ Apple Wi-Fi card (เช่น BCM94360)
-- **AirportItlwm native** — หยุดพัฒนาตั้งแต่ Sonoma 14.4 การ์ด Intel AC 8265 ลอง patch แล้วยังใช้ไม่ได้ ใช้ HeliPort แทน
+- **Handoff / Continuity** — requires an Apple Wi-Fi card (e.g. BCM94360)
+- **AirportItlwm native** — development stalled since Sonoma 14.4; tried patching for the Intel AC 8265 card but it still doesn't work, use HeliPort instead
 
 ---
 
-## 🛠️ Kexts หลัก
+## 🛠️ Main Kexts
 
-| Kext | Version | หน้าที่ |
-|------|---------|--------|
+| Kext | Version | Purpose |
+|------|---------|---------|
 | Lilu | 1.6.x | Base |
 | VirtualSMC | 1.3.x | SMC Emulation |
 | WhateverGreen | 1.6.x | GPU |
@@ -66,10 +66,10 @@
 
 ---
 
-## ⚙️ ACPI SSDTs (จาก SSDTTime)
+## ⚙️ ACPI SSDTs (from SSDTTime)
 
-| File | หน้าที่ |
-|------|--------|
+| File | Purpose |
+|------|---------|
 | SSDT-EC.aml | Fake EC |
 | SSDT-PLUG.aml | CPU Power Management |
 | SSDT-USBX.aml | USB Power Properties |
@@ -84,7 +84,7 @@
 - Fast Boot
 - Secure Boot
 - CSM
-- Above 4G Decoding (ถ้ามีปัญหา)
+- Above 4G Decoding (if issues occur)
 
 **Enable:**
 - EHCI/XHCI Hand-off
@@ -94,25 +94,25 @@
 
 ## 🚀 Post-Install
 
-1. Mount EFI และใส่ EFI folder
-2. รัน **OCLP-Mod 3.1.9** → Apply Root Patch (GPU + Audio)
-3. ลง **HeliPort** สำหรับ Wi-Fi
-4. USB mapping ด้วย USBToolBox บน macOS
+1. Mount the EFI partition and copy the EFI folder onto it
+2. Run **OCLP-Mod 3.1.9** → Apply Root Patch (GPU + Audio)
+3. Install **HeliPort** for Wi-Fi
+4. Map USB ports with USBToolBox on macOS
 
 ---
 
-## ⚠️ หมายเหตุ
+## ⚠️ Notes
 
-- **ทุกครั้งที่ macOS update** ต้องรัน OCLP-Mod root patch ใหม่
-- **SIP** ต้องตั้งเป็น `0x803` (csr-active-config = `03080000`)
-- **amfi=0x80** ต้องอยู่ใน boot-args เสมอเพื่อให้ OCLP ทำงาน
-- Test บน **macOS Tahoe 26.5.1** เท่านั้น ไม่รับประกันเวอร์ชันอื่น
+- **Every time macOS updates**, re-run the OCLP-Mod root patch
+- **SIP** must be set to `0x803` (csr-active-config = `03080000`)
+- **amfi=0x80** must always be in boot-args for OCLP to work
+- Tested on **macOS Tahoe 26.5.1** only — other versions not guaranteed
 
 ---
 
 ## 📸 Screenshots
 
-> *แนบรูป About This Mac + Hackintool ที่นี่*
+> *Attach About This Mac + Hackintool screenshots here*
 
 ---
 
