@@ -6,6 +6,8 @@
 ![SMBIOS](https://img.shields.io/badge/SMBIOS-MacPro7,1-grey?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Working-green?style=flat-square)
 
+![About This Mac](Docs/Screenshots/B5CC167C-A4D2-4E5B-8B6B-86A746BA2519.webp)
+
 > Upgraded from macOS Sonoma 14.0.2 → Tahoe 26.5.1
 
 ---
@@ -106,13 +108,7 @@
 - **Every time macOS updates**, re-run the OCLP-Mod root patch
 - **SIP** must be set to `0x803` (csr-active-config = `03080000`)
 - **amfi=0x80** must always be in boot-args for OCLP to work
-- Tested on **macOS Tahoe 26.5.1** only — other versions not guaranteed
-
----
-
-## 📸 Screenshots
-
-![About This Mac](Docs/Screenshots/B5CC167C-A4D2-4E5B-8B6B-86A746BA2519.webp)
+- This EFI works on macOS Ventura 13, Sonoma 14.0, Sonoma 14.4, Sequoia 15, and Tahoe 26.5.1 — not limited to 26.5.1
 
 ---
 
