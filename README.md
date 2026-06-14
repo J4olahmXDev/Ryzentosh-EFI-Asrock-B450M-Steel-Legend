@@ -72,15 +72,25 @@
 
 ---
 
-## ⚙️ ACPI SSDTs (from SSDTTime)
+## ⚙️ ACPI
 
-| File | Purpose |
-|------|---------|
-| SSDT-EC.aml | Fake EC |
-| SSDT-PLUG.aml | CPU Power Management |
-| SSDT-USBX.aml | USB Power Properties |
-| SSDT-USB-Reset.aml | Reset USB Controllers |
-| SSDT-HPET.aml | IRQ Fix |
+### SSDT-ALL-For-B450M.aml
+Instead of using separate SSDTs (SSDT-EC, SSDT-PLUG, SSDT-USBX, SSDT-USB-Reset, SSDT-HPET), all of them are merged into a single combined SSDT for simplicity.
+
+| Section | Purpose |
+|---------|---------|
+| **EC (Embedded Controller)** | Adds a fake EC device (`ACID0001`) under `\_SB.PCI0.SBRG`. AMD motherboards don't expose a real EC the way Intel ones do, so macOS needs this fake EC for sleep/wake and power management to work correctly. |
+| **HPET** | Patches the HPET device's `_CRS` and `_STA` methods to fix IRQ conflicts (IRQ 8 and 0) that cause boot panics or instability on AMD platforms. |
+| **PLUG (CPU Power Management)** | Adds a `_DSM` method under `\_PR.C000` (CPU core 0), required for `AMDRyzenCPUPowerManagement.kext` to enable per-core power management/throttling on Ryzen CPUs. |
+| **USBX (USB Power Properties)** | Adds a virtual `USBX` device under `\_SB` with a `_DSM` method defining USB sleep/wake current limits. Without this, USB devices may not get proper power during sleep or fail to wake the system. |
+| **USB-Reset** | Patches `_STA` on the XHCI USB controllers (`\_SB.PCI0.GP17.XHC0.RHUB` and `\_SB.PCI0.GPP2.PTXH.RHUB`) so macOS ("Darwin") sees them as enabled/disabled correctly — works alongside USBToolBox/UTBMap to ensure all 15 mapped USB ports are recognized. |
+
+### ACPI Patches
+
+| Comment | Find | Replace | Purpose |
+|---------|------|---------|---------|
+| HPET _STA to XSTA Rename | `_STA` | `XSTA` | Renames the original `_STA` method on HPET to `XSTA`, freeing up `_STA` so the SSDT-ALL HPET patch above can define its own without conflicting with the existing ACPI table. |
+| HPET _CRS to XCRS Rename | `_CRS` | `XCRS` | Renames the original `_CRS` method on HPET to `XCRS`, for the same reason — clears the way for the SSDT-ALL HPET `_CRS` override to take effect. |
 
 ---
 
